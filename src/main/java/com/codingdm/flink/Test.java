@@ -1,7 +1,7 @@
 package com.codingdm.flink;
 
 /**
- * TEST4
+ * TEST6
  */
 public class Test {
 
