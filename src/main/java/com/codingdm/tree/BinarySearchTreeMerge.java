@@ -15,7 +15,7 @@ import java.util.Queue;
 public class BinarySearchTreeMerge {
 
 
-    public void toArray(ArrayList<Integer> result, Node root){
+    public void toArray(ArrayList<Integer> result, NodeTree root){
         if(root != null) {
             toArray(result, root.left);
             result.add(root.data);
@@ -23,7 +23,7 @@ public class BinarySearchTreeMerge {
         }
     }
 
-    public ArrayList<Integer> treeToArray(Node root){
+    public ArrayList<Integer> treeToArray(NodeTree root){
         ArrayList<Integer> result = new ArrayList<>();
         toArray(result, root);
         return result;
@@ -65,13 +65,13 @@ public class BinarySearchTreeMerge {
         return result;
     }
 
-    public Node arrayToTree(ArrayList<Integer> array, int start, int end){
+    public NodeTree arrayToTree(ArrayList<Integer> array, int start, int end){
 
         if (start > end) {
            return null;
         }
         int mid = (start + end) / 2;
-        Node node = new Node(array.get(mid));
+        NodeTree node = new NodeTree(array.get(mid));
 
         node.left = arrayToTree(array, start, mid - 1);
 
@@ -82,14 +82,14 @@ public class BinarySearchTreeMerge {
     }
 
 
-    public void print (Node root) {
+    public void print (NodeTree root) {
         // 利用队列先进先出的性质存储节点
-        LinkedList<Node> queue = new LinkedList<>();
+        LinkedList<NodeTree> queue = new LinkedList<>();
         if (root != null) {
             queue.add(root);
         }
         while (!queue.isEmpty()) {
-            Node curr = queue.remove();
+            NodeTree curr = queue.remove();
 
 //            res.add(curr.val);
             System.out.println(curr.data);
@@ -106,18 +106,18 @@ public class BinarySearchTreeMerge {
     public static void main(String[] args) {
 
         BinarySearchTreeMerge binarySearchTreeMerge = new BinarySearchTreeMerge();
-        Node tree1 = new Node(100);
-        tree1.left = new Node(50);
-        tree1.right = new Node(300);
-        tree1.left.left = new Node(20);
-        tree1.left.right = new Node(70);
+        NodeTree tree1 = new NodeTree(100);
+        tree1.left = new NodeTree(50);
+        tree1.right = new NodeTree(300);
+        tree1.left.left = new NodeTree(20);
+        tree1.left.right = new NodeTree(70);
         ArrayList<Integer> array1 = binarySearchTreeMerge.treeToArray(tree1);
 
         System.out.println(array1.toString());
 
-        Node tree2 = new Node(80);
-        tree2.left = new Node(40);
-        tree2.right = new Node(120);
+        NodeTree tree2 = new NodeTree(80);
+        tree2.left = new NodeTree(40);
+        tree2.right = new NodeTree(120);
         ArrayList<Integer> array2 = binarySearchTreeMerge.treeToArray(tree2);
 
         System.out.println(array2.toString());
@@ -126,7 +126,7 @@ public class BinarySearchTreeMerge {
 
         System.out.println(merged.toString());
 
-        Node node = binarySearchTreeMerge.arrayToTree(merged, 0, merged.size() - 1);
+        NodeTree node = binarySearchTreeMerge.arrayToTree(merged, 0, merged.size() - 1);
 
         binarySearchTreeMerge.print(node);
 
@@ -136,12 +136,12 @@ public class BinarySearchTreeMerge {
 
 }
 
-class Node {
+class NodeTree {
 
     Integer data;
-    Node left, right;
+    NodeTree left, right;
 
-    Node(Integer d) {
+    NodeTree(Integer d) {
         data = d;
         left = right = null;
     }
